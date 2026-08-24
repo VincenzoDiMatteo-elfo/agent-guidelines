@@ -1,7 +1,6 @@
 # agent-guidelines
 
-A Karpathy-style wiki for AI development guidelines.  
-Raw, minimal, and structured for LLM consumption.
+A curated source of development guidelines and an indexed wiki for AI agents.
 
 ---
 
@@ -9,16 +8,22 @@ Raw, minimal, and structured for LLM consumption.
 
 ```
 /
-├── wiki/          # Curated wiki pages (one topic per file)
-├── raw/           # Raw notes, transcripts, references (unprocessed)
-└── guidelines/    # Distilled development guidelines for AI agents
+├── raw/           # Canonical, curated source material
+│   └── guidelines/ # Rules and decisions before wiki indexing
+└── wiki/          # Derived, normalized pages optimized for retrieval
 ```
+
+`raw/` is the source of truth. Keep its content precise and well-structured;
+it is not a dump for unprocessed notes. Generate or update `wiki/` from it
+without changing the meaning of the source.
 
 ---
 
 ## Wiki Index
 
-> Pages live in `wiki/`. Each file covers one concept, pattern, or decision.
+> Pages in `wiki/` are generated from the curated sources in `raw/`.
+> Each file covers one concept, pattern, or decision and is optimized for
+> search and LLM retrieval.
 
 | File | Topic |
 |------|-------|
@@ -26,32 +31,34 @@ Raw, minimal, and structured for LLM consumption.
 
 ---
 
-## Guidelines Index
+## Curated Sources
 
-> Distilled rules in `guidelines/`. These are fed directly to AI agents.
+> Development rules belong in `raw/guidelines/` and are the canonical input
+> for the corresponding wiki pages.
 
 | File | Scope |
 |------|-------|
-| [coding.md](guidelines/coding.md) | General coding standards |
-| [architecture.md](guidelines/architecture.md) | Architecture decisions |
-| [testing.md](guidelines/testing.md) | Testing practices |
-| [git.md](guidelines/git.md) | Git workflow |
-| [ai-usage.md](guidelines/ai-usage.md) | How to work with AI agents |
+| [coding.md](raw/guidelines/coding.md) | General coding standards |
+| [architecture.md](raw/guidelines/architecture.md) | Architecture decisions |
+| [testing.md](raw/guidelines/testing.md) | Testing practices |
+| [git.md](raw/guidelines/git.md) | Git workflow |
+| [ai-usage.md](raw/guidelines/ai-usage.md) | How to work with AI agents |
 
 ---
 
-## Raw Index
+## Update Flow
 
-> Unprocessed material lives in `raw/`. Promote content to `wiki/` once curated.
-
-*(empty — add raw notes as needed)*
+1. Curate and validate the source in `raw/`.
+2. Split information into atomic pages in `wiki/`.
+3. Preserve links from each wiki page to its raw source.
+4. Update the wiki whenever its source changes.
 
 ---
 
 ## Conventions
 
-- **wiki/** — one file per concept, present tense, concise
-- **raw/** — free-form, dated if possible (`YYYY-MM-DD-topic.md`)
-- **guidelines/** — imperative tone, bullet lists, no fluff
+- **raw/** — canonical source, explicit headings, imperative rules where applicable
+- **raw/guidelines/** — curated development rules and decisions
+- **wiki/** — one file per concept, concise, stable headings, search-friendly terms
 - All files are Markdown
-- No nested directories unless strictly necessary
+- Keep nesting limited to the `raw/guidelines/` source group
